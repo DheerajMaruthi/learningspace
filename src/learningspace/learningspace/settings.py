@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'account',
+    'query',
+    'filer',
+    'easy_thumbnails',
+    
 ]
 
 AUTH_USER_MODEL = 'account.User'
@@ -99,13 +103,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+         'OPTIONS': {
+            'min_length': 8, }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'OPTIONS': {
+            'min_digits': 2, }
     },
+    {'NAME': 'learningspace.validator.SymbolValidator',
+        'OPTIONS': {
+            'min_digits': 2, }},
 ]
 
 PASSWORD_HASHERS = [
@@ -177,3 +188,9 @@ LOGGING = {
         },
     }
 }
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'test@gmail.com'
+EMAIL_HOST_PASSWORD = 'testpass@123'
+EMAIL_PORT = 465

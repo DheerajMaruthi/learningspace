@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id','username', 'groups', 'email', 'phone')
+        fields = ('id', 'groups', 'email', 'phone')
 
     def get_plan(self, user):
         qs = UserSubscription.objects.filter(status=True, user=user)
@@ -25,8 +25,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username','first_name', 'last_name', 'groups', 'email', 'password','phone']
-        extra_kwargs = {'password': {'write_only': True}, 'groups': {'required': True}}
+        fields = ['first_name', 'last_name', 'email', 'password','phone']
+        extra_kwargs = {'password': {'write_only': True}}
 
 
     def create(self, validated_data):
